@@ -2886,9 +2886,9 @@ int main(int argc, char *argv[])
 	i++;
 	bugs[i] = new(i, fill_xfs, (void *)512, "fill up XFS repetitively.");
 	i++;
-	bugs[i] = new(i, mmap_collision, NULL,
-		"change inode block map before completing I/O.");
-	i++;
+	// bugs[i] = new(i, mmap_collision, NULL,
+	// 	"change inode block map before completing I/O.");
+	// i++;
 	bugs[i] = new(i, invalidate_pagecache_dio, NULL,
 		"invalidate page caches in buffer/direct write/read modes.");
 	i++;
