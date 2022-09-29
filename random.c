@@ -2894,7 +2894,7 @@ int main(int argc, char *argv[])
 	// i++;
 
 	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
-		fprintf(c);
+		printf("%c", c);
 		switch(c) {
 		case 'b':
 			code = build_kernel();
