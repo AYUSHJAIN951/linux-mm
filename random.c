@@ -2892,11 +2892,10 @@ int main(int argc, char *argv[])
 	// bugs[i] = new(i, invalidate_pagecache_dio, NULL,
 	// 	"invalidate page caches in buffer/direct write/read modes.");
 	// i++;
-	c = getopt(argc, argv, "bhfk::lx:")
-	print("c")
-	print(c)
-	while (c != -1) {
+	
+	while ((c = getopt(argc, argv, "bhfk::lx:"))!= -1) {
 		// print("c=%s"%c)
+		print(c)
 		switch(c) {
 		case 'b':
 			code = build_kernel();
