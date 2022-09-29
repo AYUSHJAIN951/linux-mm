@@ -2896,23 +2896,29 @@ int main(int argc, char *argv[])
 	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
 		switch(c) {
 		case 'b':
+			printf("1");
 			code = build_kernel();
 			goto out;
 		case 'f':
+			printf("2");
 			fuzzer = true;
 			break;
 		case 'k':
+			printf("3");
 			kvm = true;
 			devid = optarg;
 			break;
 		case 'l':
+			printf("4");
 			list_bug(bugs);
 			goto out;
 		case 'x':
+			printf("5");
 			skip[xcount++] = optarg;
 			break;
 		case 'h': /* fall-through */
 		default:
+			printf("8");
 			usage(argv[0]);
 			goto out;
 		}
