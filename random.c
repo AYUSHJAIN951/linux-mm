@@ -2894,8 +2894,6 @@ int main(int argc, char *argv[])
 	// i++;
 	
 	while ((c = getopt(argc, argv, "bhfk::lx:"))!= -1) {
-		// print("c=%s"%c)
-		print("fhyiudskj")
 		switch(c) {
 		case 'b':
 			code = build_kernel();
