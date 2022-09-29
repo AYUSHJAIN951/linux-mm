@@ -2532,8 +2532,12 @@ static int mmap_collision()
 	if (file.ptr == MAP_FAILED)
 		goto read;
 
-	if (run_fileops(punch_hole, file) ||
-	    run_fileops(zero_range, file) ||
+	// if (run_fileops(punch_hole, file) ||
+	//     run_fileops(zero_range, file) ||
+	//     run_fileops(truncate_down, file) ||
+	//     run_fileops(collapse_range, file))
+	// 	goto munmap;
+	if (run_fileops(zero_range, file) ||
 	    run_fileops(truncate_down, file) ||
 	    run_fileops(collapse_range, file))
 		goto munmap;
