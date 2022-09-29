@@ -2892,8 +2892,10 @@ int main(int argc, char *argv[])
 	// bugs[i] = new(i, invalidate_pagecache_dio, NULL,
 	// 	"invalidate page caches in buffer/direct write/read modes.");
 	// i++;
-
-	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
+	c = getopt(argc, argv, "bhfk::lx:")
+	print("c")
+	print(c)
+	while (c != -1) {
 		// print("c=%s"%c)
 		switch(c) {
 		case 'b':
