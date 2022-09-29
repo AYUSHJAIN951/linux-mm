@@ -2892,34 +2892,28 @@ int main(int argc, char *argv[])
 	// bugs[i] = new(i, invalidate_pagecache_dio, NULL,
 	// 	"invalidate page caches in buffer/direct write/read modes.");
 	// i++;
-	
-	while ((c = getopt(argc, argv, "bhfk::lx:"))!= -1) {
+
+	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
+		fprintf(c);
 		switch(c) {
 		case 'b':
-			print("b 1")
 			code = build_kernel();
 			goto out;
 		case 'f':
-			print("f 2")
 			fuzzer = true;
 			break;
 		case 'k':
 			kvm = true;
-			print("k 3")
 			devid = optarg;
 			break;
 		case 'l':
-			print("l 4")
 			list_bug(bugs);
 			goto out;
 		case 'x':
-			print("x 5")
 			skip[xcount++] = optarg;
 			break;
 		case 'h': /* fall-through */
-			print("h 6")
 		default:
-			print("default 7")
 			usage(argv[0]);
 			goto out;
 		}
