@@ -2894,25 +2894,33 @@ int main(int argc, char *argv[])
 	// i++;
 
 	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
+		printf("c=%c", c);
 		switch(c) {
 		case 'b':
+			printf("b 1");
 			code = build_kernel();
 			goto out;
 		case 'f':
+			printf("f 2");
 			fuzzer = true;
 			break;
 		case 'k':
+			printf("k 3");
 			kvm = true;
 			devid = optarg;
 			break;
 		case 'l':
+			printf("l 4");
 			list_bug(bugs);
 			goto out;
 		case 'x':
+			printf("x 5");
 			skip[xcount++] = optarg;
 			break;
 		case 'h': /* fall-through */
+			printf("h 6");
 		default:
+			printf("default 7");
 			usage(argv[0]);
 			goto out;
 		}
