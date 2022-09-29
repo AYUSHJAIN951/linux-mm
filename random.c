@@ -2851,47 +2851,47 @@ int main(int argc, char *argv[])
 
 	size = free_size * 1.2;
 	/* Allocate a bit more to trigger swapping/OOM. */
-	bugs[i] = new(i, alloc_mmap_hotplug_memory, (void *)size,
-		"trigger swapping/OOM, and then offline all memory.");
-	i++;
-	bugs[i] = new(i, migrate_huge_hotplug_memory, (void *)free_size,
-		"migrate hugepages while soft offlining, and then offline "
-		"all memory.");
-	i++;
-	bugs[i] = new(i, migrate_ksm, NULL,
-		"migrate KSM pages repetitively.");
-	i++;
-	bugs[i] = new(i, read_tree, "/sys", "read all sysfs files.");
-	i++;
-	bugs[i] = new(i, hotplug_cpu, "", "offline and online all CPUs.");
-	i++;
-	bugs[i] = new(i, oom, NULL, "trigger normal OOM.");
-	i++;
-	bugs[i] = new(i, oom, "NUMA", "trigger NUMA OOM.");
-	i++;
-	bugs[i] = new(i, read_tree, "/proc", "read all procfs files.");
-	i++;
-	bugs[i] = new(i, fill_semget, NULL,
-		"force semget() to return ENOSPC.");
-	i++;
-	bugs[i] = new(i, mmap_hugetlbfs, (void *)64,
-		"mmap a file in hugetlbfs.");
-	i++;
-	bugs[i] = new(i, runc, NULL, "spawn a runc container.");
-	i++;
-	bugs[i] = new(i, loop_mmap_huge, (void *)63,
-		"mmap hugepages concurrently.");
-	i++;
-	bugs[i] = new(i, memfd_huge, NULL, "create memfd in hugetlbfs.");
-	i++;
-	bugs[i] = new(i, fill_xfs, (void *)512, "fill up XFS repetitively.");
-	i++;
-	// bugs[i] = new(i, mmap_collision, NULL,
-	// 	"change inode block map before completing I/O.");
+	// bugs[i] = new(i, alloc_mmap_hotplug_memory, (void *)size,
+	// 	"trigger swapping/OOM, and then offline all memory.");
 	// i++;
-	bugs[i] = new(i, invalidate_pagecache_dio, NULL,
-		"invalidate page caches in buffer/direct write/read modes.");
+	// bugs[i] = new(i, migrate_huge_hotplug_memory, (void *)free_size,
+	// 	"migrate hugepages while soft offlining, and then offline "
+	// 	"all memory.");
+	// i++;
+	// bugs[i] = new(i, migrate_ksm, NULL,
+	// 	"migrate KSM pages repetitively.");
+	// i++;
+	// bugs[i] = new(i, read_tree, "/sys", "read all sysfs files.");
+	// i++;
+	// bugs[i] = new(i, hotplug_cpu, "", "offline and online all CPUs.");
+	// i++;
+	// bugs[i] = new(i, oom, NULL, "trigger normal OOM.");
+	// i++;
+	// bugs[i] = new(i, oom, "NUMA", "trigger NUMA OOM.");
+	// i++;
+	// bugs[i] = new(i, read_tree, "/proc", "read all procfs files.");
+	// i++;
+	// bugs[i] = new(i, fill_semget, NULL,
+	// 	"force semget() to return ENOSPC.");
+	// i++;
+	// bugs[i] = new(i, mmap_hugetlbfs, (void *)64,
+	// 	"mmap a file in hugetlbfs.");
+	// i++;
+	// bugs[i] = new(i, runc, NULL, "spawn a runc container.");
+	// i++;
+	// bugs[i] = new(i, loop_mmap_huge, (void *)63,
+	// 	"mmap hugepages concurrently.");
+	// i++;
+	// bugs[i] = new(i, memfd_huge, NULL, "create memfd in hugetlbfs.");
+	// i++;
+	// bugs[i] = new(i, fill_xfs, (void *)512, "fill up XFS repetitively.");
+	// i++;
+	bugs[i] = new(i, mmap_collision, NULL,
+		"change inode block map before completing I/O.");
 	i++;
+	// bugs[i] = new(i, invalidate_pagecache_dio, NULL,
+	// 	"invalidate page caches in buffer/direct write/read modes.");
+	// i++;
 
 	while ((c = getopt(argc, argv, "bhfk::lx:")) != -1) {
 		switch(c) {
