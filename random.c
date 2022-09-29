@@ -2365,16 +2365,21 @@ static void *punch_hole(void *data)
 				read += rc;
 		} while (rc > 0);
 
-		if (read != fsize || rc) {
-			fprintf(stderr, "%s pread: %s\n", __func__,
-				strerror(errno));
-			return (void *)1;
-		}
-		rc = safe_fallocate(file.fd_write,
-				    FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE,
-				    0, fsize);
-		if (rc < 0)
-			return (void *)1;
+		// if (read != fsize || rc) {
+		// 	fprintf(stderr, "%s pread: %s\n", __func__,
+		// 		strerror(errno));
+		// 	return (void *)1;
+		// }
+		// rc = safe_fallocate(file.fd_write,
+		// 		    FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE,
+		// 		    0, fsize);
+		// if (rc < 0)
+		// 	return (void *)1;
+
+		/*
+		 * Ignore errors from pread(). These errors can happen if the
+		 * other thread has made the file size 0.
+		 */
 
 		usleep(rand() % 1000);
 	}
@@ -2532,15 +2537,15 @@ static int mmap_collision()
 	if (file.ptr == MAP_FAILED)
 		goto read;
 
-	// if (run_fileops(punch_hole, file) ||
-	//     run_fileops(zero_range, file) ||
-	//     run_fileops(truncate_down, file) ||
-	//     run_fileops(collapse_range, file))
-	// 	goto munmap;
-	if (run_fileops(zero_range, file) ||
+	if (run_fileops(punch_hole, file) ||
+	    run_fileops(zero_range, file) ||
 	    run_fileops(truncate_down, file) ||
 	    run_fileops(collapse_range, file))
 		goto munmap;
+	// if (run_fileops(zero_range, file) ||
+	//     run_fileops(truncate_down, file) ||
+	//     run_fileops(collapse_range, file))
+	// 	goto munmap;
 
 	printf("- pass: %s\n", __func__);
 	code = 0;
