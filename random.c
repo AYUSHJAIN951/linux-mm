@@ -2366,15 +2366,16 @@ static void *punch_hole(void *data)
 		} while (rc > 0);
 
 		// if (read != fsize || rc) {
-		// 	fprintf(stderr, "%s pread: %s\n", __func__,
-		// 		strerror(errno));
-		// 	return (void *)1;
-		// }
-		// rc = safe_fallocate(file.fd_write,
-		// 		    FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE,
-		// 		    0, fsize);
-		// if (rc < 0)
-		// 	return (void *)1;
+		if (rc) {
+			fprintf(stderr, "%s pread: %s\n", __func__,
+				strerror(errno));
+			return (void *)1;
+		}
+		rc = safe_fallocate(file.fd_write,
+				    FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE,
+				    0, fsize);
+		if (rc < 0)
+			return (void *)1;
 
 		/*
 		 * Ignore errors from pread(). These errors can happen if the
