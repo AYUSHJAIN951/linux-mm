@@ -2361,13 +2361,19 @@ static void *punch_hole(void *data)
 		do {
 			rc = pread(file.fd_read, file.ptr + read, fsize - read,
 				   read);
+			printf("rc= %d\n",rc);
 			if (rc > 0)
 				read += rc;
+
 		} while (rc > 0);
+		printf("rc= %d\n",rc);
+		printf("read=%zu\n",read);
+		// printf("read=%d",read);
+		printf("fsize=%d\n\n",fsize);
 
 		// if (read != fsize || rc) {
 		if (read != fsize || rc) {
-			printf("ISSUEEE");
+			printf("ISSUEEE\n");
 			printf("rc= %d\n",rc);
 			printf("read=%zu\n",read);
 			// printf("read=%d",read);
