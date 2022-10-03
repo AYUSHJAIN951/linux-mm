@@ -2361,7 +2361,7 @@ static void *punch_hole(void *data)
 		do {
 			rc = pread(file.fd_read, file.ptr + read, fsize - read,
 				   read);
-			printf("rc= %d\n",rc);
+			printf("rc  =   %d\n",rc);
 			if (rc > 0)
 				read += rc;
 
