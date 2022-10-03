@@ -2364,7 +2364,9 @@ static void *punch_hole(void *data)
 			if (rc > 0)
 				read += rc;
 		} while (rc > 0);
-
+		fprintf("rc=%s",rc);
+		fprintf("read=%s",read);
+		fprintf("fsize=%s",fsize);
 		// if (read != fsize || rc) {
 		if (read != fsize) {
 			fprintf(stderr, "%s pread: %s\n", __func__,
