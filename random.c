@@ -2367,6 +2367,7 @@ static void *punch_hole(void *data)
 
 		// if (read != fsize || rc) {
 		if (read != fsize || rc) {
+			prinf("ISSUEEE");
 			printf("rc= %d\n",rc);
 			printf("read=%zu\n",read);
 			// printf("read=%d",read);
